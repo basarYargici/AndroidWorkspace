@@ -8,4 +8,4 @@ Aim of this project is using and understanding how to work with `Synthetic Bindi
  - Go to app-module level gradle file
 - Add  `id 'kotlin-android-extensions'`
 
- - [x] Now you can access your views with their id's
+ Now you can access your views with their id's
