@@ -1,6 +1,6 @@
 # Volley Workspace  
   
-Aim of this project is making network request with `Volley` and using `Glide`, `Recyclerview` and  `ViewBinding` 
+Aim of this project is making network request with `Volley`, using `Glide` for loading images, `Recyclerview` and  `ViewBinding` 
 
 
 **To work with Volley and Glide:**
