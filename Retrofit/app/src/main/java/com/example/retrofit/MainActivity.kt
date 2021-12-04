@@ -42,10 +42,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e(TAG, "Response not successfull")
             }
             binding.progressbar.isVisible = false
-
         }
-
-
     }
 
     private fun setupRecyclerView() = binding.rvTodos.apply {
