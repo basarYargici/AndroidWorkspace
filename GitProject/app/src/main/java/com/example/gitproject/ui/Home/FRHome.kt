@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.gitproject.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitproject.databinding.FragmentHomeBinding
 
 
-class HomeFragment : Fragment() {
+class FRHome : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
 
@@ -20,8 +19,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.btnGo.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_userDetailFragment)
+        binding.rvUsers.apply {
+            adapter = UsersAdapter()
+            layoutManager = LinearLayoutManager(context)
         }
         return binding.root
     }
