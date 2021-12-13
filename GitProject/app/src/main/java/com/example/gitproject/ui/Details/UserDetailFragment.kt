@@ -1,4 +1,4 @@
-package com.example.gitproject.ui
+package com.example.gitproject.ui.Details
 
 import android.os.Bundle
 import android.view.LayoutInflater
