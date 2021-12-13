@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.gitproject.ui.Home.FRHome"
+        android:name="com.example.gitproject.ui.home.FRHome"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/userDetailFragment"
-        android:name="com.example.gitproject.ui.Details.UserDetailFragment"
+        android:name="com.example.gitproject.ui.details.UserDetailFragment"
         android:label="UserDetailFragment"
         tools:layout="@layout/fragment_user_detail" />
 </navigation>

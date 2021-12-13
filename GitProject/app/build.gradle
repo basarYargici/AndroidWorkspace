@@ -59,5 +59,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'com.google.android.material:material:1.4.0'
-
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

@@ -7,66 +7,112 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:elevation="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp">
 
-
-        <ImageView
-            android:id="@+id/ivAvatar"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tvId"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:maxLines="1"
-            tools:text="Id"
-            app:layout_constraintBottom_toTopOf="@+id/tvLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:maxLines="1"
-            tools:text="Login"
-            app:layout_constraintBottom_toTopOf="@+id/tvType"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/tvId" />
+            >
 
-        <TextView
-            android:id="@+id/tvType"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:maxLines="1"
-            tools:text="Type"
-            app:layout_constraintBottom_toTopOf="@+id/tvNodeId"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
 
-        <TextView
-            android:id="@+id/tvNodeId"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:maxLines="1"
-            tools:text="NodeId"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-            app:layout_constraintTop_toBottomOf="@+id/tvType"
-            app:layout_constraintVertical_bias="1.0" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+
+            <TextView
+                android:id="@+id/tvId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:maxLines="1"
+                app:layout_constraintBottom_toTopOf="@+id/tvLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Id" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toTopOf="@+id/tvLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvId" />
+
+            <TextView
+                android:id="@+id/tvLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:maxLines="1"
+                app:layout_constraintBottom_toTopOf="@+id/tvType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvId"
+                tools:text="Login" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toTopOf="@+id/tvType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:maxLines="1"
+                app:layout_constraintBottom_toTopOf="@+id/tvNodeId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvLogin"
+                tools:text="Type" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0.5dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toTopOf="@+id/tvNodeId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvType" />
+
+            <TextView
+                android:id="@+id/tvNodeId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvType"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="NodeId" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </layout>
