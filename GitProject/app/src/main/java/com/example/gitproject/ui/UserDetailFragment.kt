@@ -1,4 +1,4 @@
-package com.example.gitproject
+package com.example.gitproject.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ class UserDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUserDetailBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
