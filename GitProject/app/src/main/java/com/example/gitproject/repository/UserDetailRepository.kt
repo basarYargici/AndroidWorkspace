@@ -8,7 +8,7 @@ class UserDetailRepository(
     private val gitService: GitService
 ) {
 
-    suspend fun getByUsername(username: String): Response<UserDetail> {
+    suspend fun getByUsername(username: String?): Response<UserDetail> {
         return gitService.getByUsername(username)
     }
 }
