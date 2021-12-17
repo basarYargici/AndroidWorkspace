@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.gitproject.databinding.FragmentUserDetailBinding
+import com.example.gitproject.model.Repository
 import com.example.gitproject.model.UserDetail
 import com.squareup.picasso.Picasso
 
@@ -17,11 +18,11 @@ class UserDetailFragment : Fragment() {
     private val viewModel: UserDetailViewModel by viewModels()
     var username: String? = null
     var userDetail: UserDetail? = null
+    var userRepository: List<Repository>? = mutableListOf<Repository>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             username = it.getString("username").toString()
         }
@@ -40,6 +41,7 @@ class UserDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getByUsername(username)
         observeLiveData()
+        viewModel.getUserRepositories(username)
         setComponent()
     }
 
@@ -53,10 +55,15 @@ class UserDetailFragment : Fragment() {
         }
     }
 
-    fun observeLiveData() {
+    private fun observeLiveData() {
         viewModel.userDetails.observe(viewLifecycleOwner, {
             userDetail = it
             setComponent()
+            Log.e("test", "observeLiveData: " + it.toString())
+        })
+
+        viewModel.userRepositories.observe(viewLifecycleOwner, {
+            userRepository = it
             Log.e("test", "observeLiveData: " + it.toString())
         })
     }

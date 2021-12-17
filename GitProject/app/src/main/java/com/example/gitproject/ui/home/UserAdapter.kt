@@ -8,7 +8,7 @@ import com.example.gitproject.databinding.ItemUsersBinding
 import com.example.gitproject.model.User
 import com.squareup.picasso.Picasso
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
+class UserAdapter(val userDetailListener: UserDetailListener) : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
 
     var userList = listOf<User>()
 
@@ -43,8 +43,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
 
         holder.binding.mcv.setOnClickListener {
             val user = userList[position]
-            val action = FRHomeDirections.toUserDetailFragment(user.login)
-            holder.itemView.findNavController().navigate(action)
+            userDetailListener.onUserSelected(user)
         }
     }
 
