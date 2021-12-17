@@ -13,4 +13,7 @@ interface GitService {
 
     @GET("users/{username}")
     suspend fun getByUsername(@Path("username") username: String?): Response<UserDetail>
+
+    @GET("users/{username}/repos")
+    suspend fun getUserRepositories(@Path("username") username: String?): Response<UserDetail>
 }
