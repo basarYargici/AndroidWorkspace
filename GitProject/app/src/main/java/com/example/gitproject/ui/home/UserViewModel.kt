@@ -1,6 +1,5 @@
 package com.example.gitproject.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class UserViewModel : ViewModel() {
 
-    val userRepository = UserRepository(ApiClient.apiService)
+    private val userRepository = UserRepository(ApiClient.apiService)
 
     private val _users = MutableLiveData<List<User>>()
     val responseData: LiveData<List<User>>

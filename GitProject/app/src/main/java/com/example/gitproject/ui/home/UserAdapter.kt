@@ -2,6 +2,7 @@ package com.example.gitproject.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gitproject.databinding.ItemUsersBinding
 import com.example.gitproject.model.User
@@ -11,7 +12,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
 
     var userList = listOf<User>()
 
-    inner class UsersViewHolder(private val binding: ItemUsersBinding) : RecyclerView.ViewHolder(
+
+    inner class UsersViewHolder(val binding: ItemUsersBinding) : RecyclerView.ViewHolder(
         binding.root
     ) {
         fun bind(position: Int) {
@@ -23,7 +25,6 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
                 tvNodeId.text = user.nodeId
                 tvType.text = user.type
             }
-
         }
     }
 
@@ -39,6 +40,18 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.bind(position)
+        holder.binding.mcv.setOnClickListener {
+            val user = userList[position]
+            holder.itemView.findNavController().navigate(
+                FRHomeDirections.toUserDetailFragment(
+                    user.id.toString(),
+                    user.nodeId.toString(),
+                    user.avatarUrl.toString(),
+                    user.login.toString(),
+                    user.type.toString()
+                )
+            )
+        }
     }
 
     override fun getItemCount(): Int {
@@ -47,5 +60,9 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
 
     fun setList(userList: List<User>) {
         this.userList = userList
+    }
+
+    fun getItem(position: Int): User {
+        return userList[position]
     }
 }

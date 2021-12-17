@@ -11,12 +11,37 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_userDetailFragment"
+            android:id="@+id/to_userDetailFragment"
             app:destination="@id/userDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/userDetailFragment"
         android:name="com.example.gitproject.ui.details.UserDetailFragment"
         android:label="UserDetailFragment"
-        tools:layout="@layout/fragment_user_detail" />
+        tools:layout="@layout/fragment_user_detail" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="nodeId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument android:name="avatarUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="login"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="type"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/to_homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="@id/homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
