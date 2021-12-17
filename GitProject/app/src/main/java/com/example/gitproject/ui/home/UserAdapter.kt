@@ -24,7 +24,6 @@ class UserAdapter(val userDetailListener: UserDetailListener) : RecyclerView.Ada
                 tvNodeId.text = user.nodeId
                 tvType.text = user.type
             }
-
         }
     }
 

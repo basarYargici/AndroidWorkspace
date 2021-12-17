@@ -7,18 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitproject.databinding.FragmentUserDetailBinding
 import com.example.gitproject.model.Repository
 import com.example.gitproject.model.UserDetail
 import com.squareup.picasso.Picasso
 
-class UserDetailFragment : Fragment() {
+class FRUserDetail : Fragment() {
 
     lateinit var binding: FragmentUserDetailBinding
     private val viewModel: UserDetailViewModel by viewModels()
     var username: String? = null
     var userDetail: UserDetail? = null
     var userRepository: List<Repository>? = mutableListOf<Repository>()
+    private val adapter = UserDetailAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +41,18 @@ class UserDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getByUsername(username)
+        setRecyclerView()
         observeLiveData()
+        viewModel.getByUsername(username)
         viewModel.getUserRepositories(username)
         setComponent()
+    }
+
+    private fun setRecyclerView() {
+        binding.rvRepos.apply {
+            adapter = this@FRUserDetail.adapter
+            layoutManager = LinearLayoutManager(context)
+        }
     }
 
     private fun setComponent() {
@@ -53,6 +63,8 @@ class UserDetailFragment : Fragment() {
             tvNodeId.text = userDetail?.nodeId ?: ""
             Picasso.get().load(userDetail?.avatarUrl).into(ivAvatar)
         }
+
+
     }
 
     private fun observeLiveData() {
@@ -63,7 +75,8 @@ class UserDetailFragment : Fragment() {
         })
 
         viewModel.userRepositories.observe(viewLifecycleOwner, {
-            userRepository = it
+            adapter.repositoryList = it
+            adapter.notifyDataSetChanged()
             Log.e("test", "observeLiveData: " + it.toString())
         })
     }

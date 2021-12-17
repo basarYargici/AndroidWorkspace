@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/userDetailFragment"
-        android:name="com.example.gitproject.ui.details.UserDetailFragment"
+        android:name="com.example.gitproject.ui.details.FRUserDetail"
         android:label="UserDetailFragment"
         tools:layout="@layout/fragment_user_detail">
         <action

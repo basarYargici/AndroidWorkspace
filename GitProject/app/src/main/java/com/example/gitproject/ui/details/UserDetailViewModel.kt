@@ -22,7 +22,6 @@ class UserDetailViewModel : ViewModel() {
     val userRepositories: LiveData<List<Repository>>
         get() = _userRepositories
 
-
     fun getByUsername(username: String?) {
         viewModelScope.launch {
             _userDetails.postValue(
