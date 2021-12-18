@@ -19,11 +19,7 @@
         android:name="com.example.gitproject.ui.details.FRUserDetail"
         android:label="UserDetailFragment"
         tools:layout="@layout/fragment_user_detail">
-        <action
-            android:id="@+id/to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="@id/homeFragment" />
+
         <argument
             android:name="username"
             app:argType="string"

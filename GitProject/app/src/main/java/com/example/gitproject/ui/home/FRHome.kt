@@ -10,9 +10,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitproject.databinding.FragmentHomeBinding
 import com.example.gitproject.model.User
+import java.util.*
 
 
-class FRHome : Fragment(), UserDetailListener {
+class FRHome : Fragment(), UserListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: UserViewModel by viewModels()

@@ -5,13 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gitproject.databinding.FragmentUserDetailBinding
-import com.example.gitproject.model.Repository
 import com.example.gitproject.model.UserDetail
 import com.squareup.picasso.Picasso
+
 
 class FRUserDetail : Fragment() {
 
@@ -19,7 +21,6 @@ class FRUserDetail : Fragment() {
     private val viewModel: UserDetailViewModel by viewModels()
     var username: String? = null
     var userDetail: UserDetail? = null
-    var userRepository: List<Repository>? = mutableListOf<Repository>()
     private val adapter = UserDetailAdapter()
 
 
@@ -80,4 +81,6 @@ class FRUserDetail : Fragment() {
             Log.e("test", "observeLiveData: " + it.toString())
         })
     }
+
+
 }

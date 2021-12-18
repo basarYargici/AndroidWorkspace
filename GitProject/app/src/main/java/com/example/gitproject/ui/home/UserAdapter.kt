@@ -2,13 +2,12 @@ package com.example.gitproject.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gitproject.databinding.ItemUsersBinding
 import com.example.gitproject.model.User
 import com.squareup.picasso.Picasso
 
-class UserAdapter(val userDetailListener: UserDetailListener) : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
+class UserAdapter(val userListener: UserListener) : RecyclerView.Adapter<UserAdapter.UsersViewHolder>() {
 
     var userList = listOf<User>()
 
@@ -42,7 +41,7 @@ class UserAdapter(val userDetailListener: UserDetailListener) : RecyclerView.Ada
 
         holder.binding.mcv.setOnClickListener {
             val user = userList[position]
-            userDetailListener.onUserSelected(user)
+            userListener.onUserSelected(user)
         }
     }
 
