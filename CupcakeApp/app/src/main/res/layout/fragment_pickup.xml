@@ -24,6 +24,10 @@
         <variable
             name="viewModel"
             type="com.example.cupcake.model.OrderViewModel" />
+
+        <variable
+            name="pickupFragment"
+            type="com.example.cupcake.PickupFragment" />
     </data>
 
     <ScrollView
@@ -97,10 +101,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
-                tools:text="Total $5.00"
                 android:text="@{@string/total_price(viewModel.price.toString())}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider" />
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                tools:text="Total $5.00" />
 
             <Button
                 android:id="@+id/next_button"
@@ -108,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
                 android:text="@string/next"
+                android:onClick="@{() -> pickupFragment.goToNextScreen()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
