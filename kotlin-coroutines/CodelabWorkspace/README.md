@@ -1,10 +1,12 @@
 # Coroutine Workspace
 
-This app demonstrates using of `Coroutines` and usage of `Coroutines with Retrofit`.
+Aim of this project is having hands on experience on usage of `Coroutines` and `Coroutines with Retrofit`.
 
 **To work with Coroutines and Retrofit:**
+
 - Go to app-module level gradle file
 - Add followings:
+
 ``` 
 // Coroutines  
 def coroutines_version = "1.3.5"  
