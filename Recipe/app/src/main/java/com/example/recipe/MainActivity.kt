@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             .create(RecipeService::class.java)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val recipeSearchResponse = service.getRecipes(query = "chicken", page = 1)
+            val recipeSearchResponse = service.getRecipeList(query = "chicken", page = 1)
             val recipeResponse = service.getRecipe(recipe_id = 41470)
             Log.d("MainActivity", "onCreate: ${recipeSearchResponse.recipes}")
             Log.d("MainActivity", "onCreate: ${recipeResponse.recipe}")

@@ -4,7 +4,7 @@ import com.example.recipe.domain.model.Recipe
 import com.example.recipe.domain.util.DtoMapper
 
 class RecipeDtoMapper : DtoMapper<RecipeDto, Recipe> {
-    override fun mapFromDTO(dto: RecipeDto): Recipe {
+    override fun mapToDomainModel(dto: RecipeDto): Recipe {
         with(dto) {
             return Recipe(
                 id, sourceUrl, imageUrl, publisher, ingredients, title, socialUrl, publishedId
@@ -12,7 +12,7 @@ class RecipeDtoMapper : DtoMapper<RecipeDto, Recipe> {
         }
     }
 
-    override fun mapToDTO(model: Recipe): RecipeDto {
+    override fun mapFromDomainModel(model: Recipe): RecipeDto {
         with(model) {
             return RecipeDto(
                 id, sourceUrl, imageUrl, publisher, ingredients, title, socialUrl, publishedId
@@ -21,10 +21,10 @@ class RecipeDtoMapper : DtoMapper<RecipeDto, Recipe> {
     }
 
     fun fromDTOList(initial: List<RecipeDto>): List<Recipe> {
-        return initial.map { mapFromDTO(it) }
+        return initial.map { mapToDomainModel(it) }
     }
 
     fun toDTOList(initial: List<Recipe>): List<RecipeDto> {
-        return initial.map { mapToDTO(it) }
+        return initial.map { mapFromDomainModel(it) }
     }
 }
