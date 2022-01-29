@@ -1,10 +1,7 @@
 package com.example.recipe.network.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class RecipeDto(
     @field:SerializedName("id")
     val id: String? = null,
@@ -29,4 +26,4 @@ data class RecipeDto(
 
     @field:SerializedName("publishedId")
     val publishedId: String? = null
-) : Parcelable
+)
