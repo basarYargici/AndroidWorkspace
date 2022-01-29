@@ -9,13 +9,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.recipe.databinding.ActivityMainBinding
 import com.example.recipe.network.RecipeService
 import com.google.gson.GsonBuilder
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
