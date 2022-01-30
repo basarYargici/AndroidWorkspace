@@ -14,8 +14,13 @@ import javax.inject.Singleton
 object AppModule {
     @Singleton
     @Provides
-    fun provideApplication(@ApplicationContext app: Context): BaseApplication {
-        return app as BaseApplication
+    fun provideApplication(@ApplicationContext context: Context): BaseApplication {
+        return context as BaseApplication
     }
 
+    @Singleton
+    @Provides
+    fun provideRandomString(): String {
+        return "Test random"
+    }
 }
