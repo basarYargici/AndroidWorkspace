@@ -17,10 +17,4 @@ object AppModule {
     fun provideApplication(@ApplicationContext context: Context): BaseApplication {
         return context as BaseApplication
     }
-
-    @Singleton
-    @Provides
-    fun provideRandomString(): String {
-        return "Test random"
-    }
 }
