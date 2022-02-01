@@ -19,4 +19,9 @@
             android:id="@+id/toRecipeFragment"
             app:destination="@id/recipeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/recipeViewPageFragment"
+        android:name="com.example.recipe.ui.recipelist.RecipeViewPageFragment"
+        android:label="RecipeViewPageFragment"
+        tools:layout="@layout/fragment_recipe_view_page"></fragment>
 </navigation>
