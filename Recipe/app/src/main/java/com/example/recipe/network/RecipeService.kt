@@ -7,7 +7,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RecipeService {
-    @GET("recipes")
+    @GET("recipes2")
     suspend fun getRecipeList(
         @Query("q") query: String,
         @Query("page") page: Int,

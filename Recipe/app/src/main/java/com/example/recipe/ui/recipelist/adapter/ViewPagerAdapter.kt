@@ -6,11 +6,12 @@ import com.example.recipe.ui.recipelist.RecipeViewPageFragment
 
 class ViewPagerAdapter(
     var fragment: Fragment,
-    var categoriesSize: Int
+    var categoriesSize: Int,
+    var adapter: RecipeAdapter
 ) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = categoriesSize
 
     override fun createFragment(position: Int): Fragment {
-        return RecipeViewPageFragment()
+        return RecipeViewPageFragment(adapter)
     }
 }
