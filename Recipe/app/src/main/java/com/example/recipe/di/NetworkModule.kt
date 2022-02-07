@@ -1,6 +1,8 @@
 package com.example.recipe.di
 
 import com.example.recipe.network.RecipeService
+import com.example.recipe.network.model.CategoryDtoMapper
+import com.example.recipe.network.model.CategoryItemDtoMapper
 import com.example.recipe.network.model.RecipeDtoMapper
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -18,6 +20,20 @@ object NetworkModule {
     @Provides
     fun provideRecipeMapper(): RecipeDtoMapper {
         return RecipeDtoMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCategoryItemMapper(): CategoryItemDtoMapper {
+        return CategoryItemDtoMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCategoryDtoMapper(
+        categoryItemDtoMapper: CategoryItemDtoMapper
+    ): CategoryDtoMapper {
+        return CategoryDtoMapper(categoryItemDtoMapper)
     }
 
     @Singleton

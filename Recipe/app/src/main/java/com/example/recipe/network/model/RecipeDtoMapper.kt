@@ -20,11 +20,11 @@ class RecipeDtoMapper : DtoMapper<RecipeDto, Recipe> {
         }
     }
 
-    fun fromDTOList(initial: List<RecipeDto>): List<Recipe> {
-        return initial.map { mapToDomainModel(it) }
+    override fun fromDtoListToModel(dtoList: List<RecipeDto>?): List<Recipe>? {
+        return dtoList?.map { mapToDomainModel(it) }
     }
 
-    fun toDTOList(initial: List<Recipe>): List<RecipeDto> {
-        return initial.map { mapFromDomainModel(it) }
+    override fun fromModelListToDto(modelList: List<Recipe>?): List<RecipeDto>? {
+        return modelList?.map { mapFromDomainModel(it) }
     }
 }

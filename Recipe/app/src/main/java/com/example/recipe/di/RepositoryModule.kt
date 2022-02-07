@@ -1,6 +1,7 @@
 package com.example.recipe.di
 
 import com.example.recipe.network.RecipeService
+import com.example.recipe.network.model.CategoryDtoMapper
 import com.example.recipe.network.model.RecipeDtoMapper
 import com.example.recipe.repository.RecipeRepository
 import com.example.recipe.repository.RecipeRepositoryImpl
@@ -17,11 +18,13 @@ object RepositoryModule {
     @Provides
     fun provideRecipeRepository(
         recipeService: RecipeService,
-        mapper: RecipeDtoMapper
+        recipeMapper: RecipeDtoMapper,
+        categoryMapper: CategoryDtoMapper
     ): RecipeRepository {
         return RecipeRepositoryImpl(
             recipeService,
-            mapper
+            recipeMapper,
+            categoryMapper
         )
     }
 }

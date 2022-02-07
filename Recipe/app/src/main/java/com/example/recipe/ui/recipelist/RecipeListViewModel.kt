@@ -1,5 +1,6 @@
 package com.example.recipe.ui.recipelist
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,13 +28,15 @@ class RecipeListViewModel @Inject constructor(
             _recipes.value = NetworkResult.Loading()
             try {
                 val result = recipeRepository.getRecipeList(query, page)
+                val result2 = recipeRepository.getCategoryList()
+                Log.d("TAG", "getRecipeList: ${result2.toString()}")
                 result?.let {
                     _recipes.value = NetworkResult.Success(result)
                     return@launch
                 }
             } catch (e: Exception) {
-                _recipes.value = NetworkResult.Error("Error")
                 sharedVM.errorMessage = e.message
+                _recipes.value = NetworkResult.Error(e.message)
             }
         }
     }
