@@ -1,6 +1,5 @@
 package com.example.recipe.ui.recipelist
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,22 +18,21 @@ class RecipeListViewModel @Inject constructor(
     private var recipeRepository: RecipeRepository
 ) : ViewModel() {
     private val _recipes: MutableLiveData<NetworkResult<List<RecipeDetail>>?> = MutableLiveData()
+    private val _categories: MutableLiveData<NetworkResult<List<Category>>?> = MutableLiveData()
     lateinit var sharedVM: RecipeSharedVM
 
     val recipes: LiveData<NetworkResult<List<RecipeDetail>>?>
         get() = _recipes
+    val categories: LiveData<NetworkResult<List<Category>>?>
+        get() = _categories
 
     fun getRecipeList(query: String, page: Int) {
-        viewModelScope.launch {
+        launch {
             _recipes.value = NetworkResult.Loading()
             try {
-
                 val result = recipeRepository.getRecipeList(query, page)
-                val result2 = recipeRepository.getCategoryList()
-                Log.d("TAG", "getRecipeList: ${result2.toString()}")
                 result?.let {
                     _recipes.value = NetworkResult.Success(result)
-                    return@launch
                 }
             } catch (e: Exception) {
                 sharedVM.errorMessage = e.message
@@ -42,6 +40,24 @@ class RecipeListViewModel @Inject constructor(
             }
         }
     }
+
+    fun getCategoryList() {
+        launch {
+            _categories.value = NetworkResult.Loading()
+            try {
+                val result = recipeRepository.getCategoryList()
+                result?.let {
+                    _categories.value = NetworkResult.Success(result)
+                }
+            } catch (e: Exception) {
+                sharedVM.errorMessage = e.message
+                _categories.value = NetworkResult.Error(e.message)
+            }
+        }
+    }
 }
 
 
+private fun ViewModel.launch(block: suspend () -> Unit) = viewModelScope.launch {
+    block()
+}
