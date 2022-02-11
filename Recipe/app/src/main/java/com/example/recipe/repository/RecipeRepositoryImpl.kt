@@ -1,29 +1,31 @@
 package com.example.recipe.repository
 
-import com.example.recipe.domain.model.CategoryList
-import com.example.recipe.domain.model.Recipe
+import com.example.recipe.domain.model.Category
+import com.example.recipe.domain.model.RecipeDetail
 import com.example.recipe.network.RecipeService
-import com.example.recipe.network.model.CategoryDtoMapper
-import com.example.recipe.network.model.RecipeDtoMapper
+import com.example.recipe.network.model.category.CategoryDtoMapper
+import com.example.recipe.network.model.recipe.RecipeDetailDtoMapper
 
 class RecipeRepositoryImpl(
     private val recipeService: RecipeService,
-    private val mapper: RecipeDtoMapper,
+    private val mapper: RecipeDetailDtoMapper,
     private val categoryDtoMapper: CategoryDtoMapper
 ) : RecipeRepository {
-    override suspend fun getRecipe(recipe_id: Int): Recipe? {
-        return recipeService.getRecipe(recipe_id).recipe?.let {
+    override suspend fun getRecipe(recipe_id: Int): RecipeDetail? {
+        return recipeService.getRecipeDetail(recipe_id).recipe?.let {
             mapper.mapToDomainModel(it)
         }
     }
 
-    override suspend fun getCategoryList(): CategoryList?  {
+    override suspend fun getCategoryList(): List<Category>? {
         return recipeService.getCategoryList().let {
-            it.categories?.let { it1 -> categoryDtoMapper.mapToDomainModel(it1) }
+            it.categories?.let { it1 ->
+                categoryDtoMapper.fromDtoListToModel(it1)
+            }
         }
     }
 
-    override suspend fun getRecipeList(query: String, page: Int): List<Recipe>? {
+    override suspend fun getRecipeList(query: String, page: Int): List<RecipeDetail>? {
         return recipeService.getRecipeList(query, page).recipes?.let {
             mapper.fromDtoListToModel(it)
         }

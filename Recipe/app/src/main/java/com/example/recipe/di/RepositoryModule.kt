@@ -1,8 +1,8 @@
 package com.example.recipe.di
 
 import com.example.recipe.network.RecipeService
-import com.example.recipe.network.model.CategoryDtoMapper
-import com.example.recipe.network.model.RecipeDtoMapper
+import com.example.recipe.network.model.category.CategoryDtoMapper
+import com.example.recipe.network.model.recipe.RecipeDetailDtoMapper
 import com.example.recipe.repository.RecipeRepository
 import com.example.recipe.repository.RecipeRepositoryImpl
 import dagger.Module
@@ -18,12 +18,12 @@ object RepositoryModule {
     @Provides
     fun provideRecipeRepository(
         recipeService: RecipeService,
-        recipeMapper: RecipeDtoMapper,
+        recipeDetailMapper: RecipeDetailDtoMapper,
         categoryMapper: CategoryDtoMapper
     ): RecipeRepository {
         return RecipeRepositoryImpl(
             recipeService,
-            recipeMapper,
+            recipeDetailMapper,
             categoryMapper
         )
     }

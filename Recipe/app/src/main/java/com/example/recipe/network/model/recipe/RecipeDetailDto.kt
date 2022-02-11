@@ -1,8 +1,8 @@
-package com.example.recipe.network.model
+package com.example.recipe.network.model.recipe
 
 import com.google.gson.annotations.SerializedName
 
-data class RecipeDto(
+data class RecipeDetailDto(
     @field:SerializedName("id")
     val id: String? = null,
 

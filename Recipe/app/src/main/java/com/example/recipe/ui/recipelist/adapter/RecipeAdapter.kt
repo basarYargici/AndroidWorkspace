@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recipe.R
 import com.example.recipe.databinding.ItemRecipeBinding
-import com.example.recipe.domain.model.Recipe
+import com.example.recipe.domain.model.RecipeDetail
 import com.example.recipe.ui.recipelist.adapter.RecipeAdapter.RecipeViewHolder
 import com.squareup.picasso.Picasso
 
 class RecipeAdapter(
-    private val dataSet: List<Recipe>?
+    private val dataSet: List<RecipeDetail>?
 ) : RecyclerView.Adapter<RecipeViewHolder>() {
 
     inner class RecipeViewHolder(val binding: ItemRecipeBinding) :

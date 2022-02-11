@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.recipe.databinding.FragmentRecipeViewPageBinding
-import com.example.recipe.domain.model.Recipe
+import com.example.recipe.domain.model.RecipeDetail
 import com.example.recipe.ui.RecipeSharedVM
 import com.example.recipe.ui.recipelist.adapter.RecipeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeViewPageFragment(
-    var recipes: List<Recipe>?
+    var recipes: List<RecipeDetail>?
 ) : Fragment() {
     lateinit var binding: FragmentRecipeViewPageBinding
     lateinit var adapter: RecipeAdapter

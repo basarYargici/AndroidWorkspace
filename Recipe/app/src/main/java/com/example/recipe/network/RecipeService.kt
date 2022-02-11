@@ -1,7 +1,7 @@
 package com.example.recipe.network
 
 import com.example.recipe.network.responses.CategoryGetResponse
-import com.example.recipe.network.responses.RecipeGetResponse
+import com.example.recipe.network.responses.RecipeDetailGetResponse
 import com.example.recipe.network.responses.RecipeSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,9 +15,9 @@ interface RecipeService {
     ): RecipeSearchResponse
 
     @GET("recipes/{recipe_id}")
-    suspend fun getRecipe(
+    suspend fun getRecipeDetail(
         @Path("recipe_id") recipe_id: Int,
-    ): RecipeGetResponse
+    ): RecipeDetailGetResponse
 
     @GET("categories")
     suspend fun getCategoryList(): CategoryGetResponse
