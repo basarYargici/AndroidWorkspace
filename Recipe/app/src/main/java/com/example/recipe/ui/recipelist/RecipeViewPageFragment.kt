@@ -15,10 +15,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeViewPageFragment(
-    var recipes: List<RecipeDetail>?
+    var recipes: List<RecipeDetail>?,
+    var adapter: RecipeAdapter
 ) : Fragment() {
     lateinit var binding: FragmentRecipeViewPageBinding
-    lateinit var adapter: RecipeAdapter
     private val sharedVM: RecipeSharedVM by activityViewModels()
 
     override fun onCreateView(

@@ -15,6 +15,7 @@ import com.example.recipe.network.NetworkResult
 import com.example.recipe.ui.RecipeSharedVM
 import com.example.recipe.ui.recipelist.adapter.RecipeAdapter
 import com.example.recipe.ui.recipelist.adapter.ViewPagerAdapter
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,18 +38,52 @@ class RecipeListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.sharedVM = sharedVM
         observeLiveData()
-        viewModel.getCategoryList()
-        viewModel.getRecipeList("me", 1)
+
+        getApiReq(1)
+    }
+
+    fun getApiReq(page: Int) {
+        viewModel.launch {
+            viewModel.getCategoryList()
+            viewModel.getRecipeList(sharedVM.categories?.get(0)?.title.toString(), page)
+            setViewPager()
+        }
     }
 
     private fun setViewPager() {
         binding.viewPager.adapter =
-            ViewPagerAdapter(this, sharedVM.categories?.size ?: 0, sharedVM.recipes)
+            ViewPagerAdapter(
+                this, viewModel.categories.value?.data?.size ?: 0, viewModel.recipes.value?.data ?: listOf
+                    (), adapter
+            )
         val tabLayout = binding.tabLayout
         val viewPager = binding.viewPager
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = sharedVM.categories?.get(position)?.title
         }.attach()
+
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                binding.viewPager.adapter =
+                    ViewPagerAdapter(
+                        this@RecipeListFragment, 0, listOf(), adapter
+                    )
+                viewModel.launch {
+                    Toast.makeText(context, "onTabSelected", Toast.LENGTH_SHORT).show()
+                    viewModel.getRecipeList(tab?.text.toString(), 1)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                Toast.makeText(context, "onTabUnselected", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                Toast.makeText(context, "onTabReselected", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun observeLiveData() {
@@ -66,7 +101,14 @@ class RecipeListFragment : Fragment() {
                     sharedVM.recipes = it.data
                     Log.d("recipes", "observeLiveData: ${it.data}")
                     adapter = RecipeAdapter(sharedVM.recipes)
-                    setViewPager()
+
+                    binding.viewPager.adapter =
+                        ViewPagerAdapter(
+                            this,
+                            viewModel.categories.value?.data?.size ?: 0,
+                            viewModel.recipes.value?.data ?: listOf(),
+                            adapter
+                        )
                 }
                 is NetworkResult.Error -> {
                     binding.progressIndicator.visibility = View.INVISIBLE
@@ -92,8 +134,6 @@ class RecipeListFragment : Fragment() {
                     binding.progressIndicator.visibility = View.INVISIBLE
                     sharedVM.categories = it.data
                     Log.d("categories", "observeLiveData: ${it.data}")
-                    adapter = RecipeAdapter(sharedVM.recipes)
-                    setViewPager()
                 }
                 is NetworkResult.Error -> {
                     binding.progressIndicator.visibility = View.INVISIBLE

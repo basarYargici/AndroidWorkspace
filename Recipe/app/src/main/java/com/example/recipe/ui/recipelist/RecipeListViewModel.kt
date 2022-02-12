@@ -27,38 +27,36 @@ class RecipeListViewModel @Inject constructor(
     val categories: LiveData<NetworkResult<List<Category>>?>
         get() = _categories
 
-    fun getRecipeList(query: String, page: Int) {
-        launch {
-            _recipes.value = NetworkResult.Loading()
-            try {
-                val result = recipeRepository.getRecipeList(query, page)
-                result?.let {
-                    _recipes.value = NetworkResult.Success(result)
-                }
-            } catch (e: Exception) {
-                sharedVM.errorMessage = e.message
-                _recipes.value = NetworkResult.Error(e.message)
+
+
+    suspend fun getRecipeList(query: String, page: Int) {
+        _recipes.value = NetworkResult.Loading()
+        try {
+            val result = recipeRepository.getRecipeList(query, page)
+            result?.let {
+                _recipes.value = NetworkResult.Success(result)
             }
+        } catch (e: Exception) {
+            sharedVM.errorMessage = e.message
+            _recipes.value = NetworkResult.Error(e.message)
         }
     }
 
-    fun getCategoryList() {
-        launch {
-            _categories.value = NetworkResult.Loading()
-            try {
-                val result = recipeRepository.getCategoryList()
-                result?.let {
-                    _categories.value = NetworkResult.Success(result)
-                }
-            } catch (e: Exception) {
-                sharedVM.errorMessage = e.message
-                _categories.value = NetworkResult.Error(e.message)
+    suspend fun getCategoryList() {
+        _categories.value = NetworkResult.Loading()
+        try {
+            val result = recipeRepository.getCategoryList()
+            result?.let {
+                _categories.value = NetworkResult.Success(result)
             }
+        } catch (e: Exception) {
+            sharedVM.errorMessage = e.message
+            _categories.value = NetworkResult.Error(e.message)
         }
     }
 }
 
 
-private fun ViewModel.launch(block: suspend () -> Unit): Job = viewModelScope.launch {
+fun ViewModel.launch(block: suspend () -> Unit): Job = viewModelScope.launch {
     block()
 }
