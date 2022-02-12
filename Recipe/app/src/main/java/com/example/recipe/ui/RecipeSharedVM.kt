@@ -1,6 +1,7 @@
 package com.example.recipe.ui
 
 import androidx.lifecycle.ViewModel
+import com.example.recipe.domain.model.Category
 import com.example.recipe.domain.model.RecipeDetail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -8,5 +9,6 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeSharedVM @Inject constructor() : ViewModel() {
     var recipes: List<RecipeDetail>? = null
+    var categories: List<Category>? = null
     var errorMessage: String? = "Error"
 }

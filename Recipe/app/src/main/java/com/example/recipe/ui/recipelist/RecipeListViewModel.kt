@@ -10,6 +10,7 @@ import com.example.recipe.network.NetworkResult
 import com.example.recipe.repository.RecipeRepository
 import com.example.recipe.ui.RecipeSharedVM
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -58,6 +59,6 @@ class RecipeListViewModel @Inject constructor(
 }
 
 
-private fun ViewModel.launch(block: suspend () -> Unit) = viewModelScope.launch {
+private fun ViewModel.launch(block: suspend () -> Unit): Job = viewModelScope.launch {
     block()
 }

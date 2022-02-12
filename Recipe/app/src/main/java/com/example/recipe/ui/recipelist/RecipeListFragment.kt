@@ -36,26 +36,35 @@ class RecipeListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.sharedVM = sharedVM
-        viewModel.getRecipeList("chicken", 1)
         observeLiveData()
+        viewModel.getCategoryList()
+        viewModel.getRecipeList("me", 1)
     }
 
     private fun setViewPager() {
-        binding.viewPager.adapter = ViewPagerAdapter(this, 2, sharedVM.recipes)
+        binding.viewPager.adapter =
+            ViewPagerAdapter(this, sharedVM.categories?.size ?: 0, sharedVM.recipes)
         val tabLayout = binding.tabLayout
         val viewPager = binding.viewPager
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = "OBJECT ${(position + 1)}"
+            tab.text = sharedVM.categories?.get(position)?.title
         }.attach()
     }
 
     private fun observeLiveData() {
+        observeRecipes()
+        observeCategories()
+    }
+
+    // TODO: 12.02.2022 problem: calls the setViewPager and refreshes tab to position 0. use
+    //  tabLayout.addOnTabSelectedListener()
+    private fun observeRecipes() {
         viewModel.recipes.observe(viewLifecycleOwner, {
             when (it) {
                 is NetworkResult.Success -> {
                     binding.progressIndicator.visibility = View.INVISIBLE
                     sharedVM.recipes = it.data
-                    Log.d("TAG", "observeLiveData: ${it.data}")
+                    Log.d("recipes", "observeLiveData: ${it.data}")
                     adapter = RecipeAdapter(sharedVM.recipes)
                     setViewPager()
                 }
@@ -75,4 +84,32 @@ class RecipeListFragment : Fragment() {
             }
         })
     }
+
+    private fun observeCategories() {
+        viewModel.categories.observe(viewLifecycleOwner, {
+            when (it) {
+                is NetworkResult.Success -> {
+                    binding.progressIndicator.visibility = View.INVISIBLE
+                    sharedVM.categories = it.data
+                    Log.d("categories", "observeLiveData: ${it.data}")
+                    adapter = RecipeAdapter(sharedVM.recipes)
+                    setViewPager()
+                }
+                is NetworkResult.Error -> {
+                    binding.progressIndicator.visibility = View.INVISIBLE
+                    binding.ivError.setImageResource(R.drawable.ic_baseline_error_24)
+                    Toast.makeText(
+                        context,
+                        "An exception occured: ${sharedVM.errorMessage}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                is NetworkResult.Loading -> {
+                    binding.progressIndicator.visibility = View.VISIBLE
+                }
+                else -> {}
+            }
+        })
+    }
+
 }
