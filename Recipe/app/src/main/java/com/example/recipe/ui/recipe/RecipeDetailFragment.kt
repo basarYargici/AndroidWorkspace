@@ -7,20 +7,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.recipe.databinding.FragmentRecipeBinding
+import com.example.recipe.databinding.FragmentRecipeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecipeFragment : Fragment() {
-    private val viewModel: RecipeViewModel by viewModels()
-    lateinit var binding: FragmentRecipeBinding
+class RecipeDetailFragment : Fragment() {
+    private val detailViewModel: RecipeDetailViewModel by viewModels()
+    lateinit var binding: FragmentRecipeDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRecipeBinding.inflate(inflater, container, false)
+        binding = FragmentRecipeDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 

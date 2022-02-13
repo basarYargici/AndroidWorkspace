@@ -10,8 +10,13 @@ import com.example.recipe.ui.recipelist.adapter.RecipeAdapter.RecipeViewHolder
 import com.squareup.picasso.Picasso
 
 class RecipeAdapter(
-    private val dataSet: List<RecipeDetail>?
+    private var dataSet: List<RecipeDetail>?
 ) : RecyclerView.Adapter<RecipeViewHolder>() {
+
+    fun setData(list: List<RecipeDetail>) {
+        dataSet = list
+        notifyDataSetChanged()
+    }
 
     inner class RecipeViewHolder(val binding: ItemRecipeBinding) :
         RecyclerView.ViewHolder(binding.root) {

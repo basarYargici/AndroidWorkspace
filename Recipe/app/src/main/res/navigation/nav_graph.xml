@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/recipeListFragment">
+    app:startDestination="@id/homePageFragment">
 
     <fragment
         android:id="@+id/recipeFragment"
-        android:name="com.example.recipe.ui.recipe.RecipeFragment"
+        android:name="com.example.recipe.ui.recipe.RecipeDetailFragment"
         android:label="recipe"
-        tools:layout="@layout/fragment_recipe" />
+        tools:layout="@layout/fragment_recipe_detail" />
     <fragment
-        android:id="@+id/recipeListFragment"
-        android:name="com.example.recipe.ui.recipelist.RecipeListFragment"
+        android:id="@+id/homePageFragment"
+        android:name="com.example.recipe.ui.recipelist.HomePageFragment"
         android:label="recipe list"
-        tools:layout="@layout/fragment_recipe_list">
+        tools:layout="@layout/fragment_homepage">
         <action
             android:id="@+id/toRecipeFragment"
             app:destination="@id/recipeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/recipeViewPageFragment"
-        android:name="com.example.recipe.ui.recipelist.RecipeViewPageFragment"
+        android:id="@+id/recipeFragment"
+        android:name="com.example.recipe.ui.recipelist.RecipeFragment"
         android:label="RecipeViewPageFragment"
-        tools:layout="@layout/fragment_recipe_view_page"></fragment>
+        tools:layout="@layout/fragment_recipe"></fragment>
 </navigation>

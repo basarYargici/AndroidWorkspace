@@ -11,4 +11,6 @@ class RecipeSharedVM @Inject constructor() : ViewModel() {
     var recipes: List<RecipeDetail>? = null
     var categories: List<Category>? = null
     var errorMessage: String? = "Error"
+
+
 }
