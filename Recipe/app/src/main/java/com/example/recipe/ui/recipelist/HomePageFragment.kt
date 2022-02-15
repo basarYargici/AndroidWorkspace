@@ -25,7 +25,6 @@ class HomePageFragment : Fragment() {
     private lateinit var binding: FragmentHomepageBinding
     private val viewModel: RecipeListViewModel by viewModels()
     private val sharedVM: RecipeSharedVM by activityViewModels()
-    private lateinit var adapter: RecipeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
