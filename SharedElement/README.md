@@ -16,5 +16,5 @@ in this project.
  def nav_version = "2.4.1" implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" implementation "androidx.navigation:navigation-ui-ktx:$nav_version"  
 ```
 
-![Alt Text](assets.SharedElement.gif)
+![App Gif](https://github.com/basarYargici/AndroidWorkspace/blob/main/SharedElement/assets/SharedElement.gif)
 
