@@ -1,0 +1,6 @@
+*/.idea
+.gradle
+/.github/
+/.idea/
+/LICENSE
+/CONTRIBUTING.md

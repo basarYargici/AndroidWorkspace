@@ -49,8 +49,9 @@ class FlavorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
+            flavorFragment = this@FlavorFragment
+            lifecycleOwner = viewLifecycleOwner
             viewModel = sharedViewModel
-            nextButton.setOnClickListener { goToNextScreen() }
         }
     }
 
@@ -59,6 +60,11 @@ class FlavorFragment : Fragment() {
      */
     fun goToNextScreen() {
         findNavController().navigate(R.id.action_flavorFragment_to_pickupFragment)
+    }
+
+    fun cancelOrder() {
+        sharedViewModel.resetOrder()
+        findNavController().navigate(R.id.action_flavorFragment_to_startFragment)
     }
 
     /**

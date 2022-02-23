@@ -16,32 +16,13 @@
     </fragment>
     <fragment
         android:id="@+id/userDetailFragment"
-        android:name="com.example.gitproject.ui.details.UserDetailFragment"
+        android:name="com.example.gitproject.ui.details.FRUserDetail"
         android:label="UserDetailFragment"
-        tools:layout="@layout/fragment_user_detail" >
+        tools:layout="@layout/fragment_user_detail">
+
         <argument
-            android:name="id"
+            android:name="username"
             app:argType="string"
             app:nullable="true" />
-        <argument
-            android:name="nodeId"
-            app:argType="string"
-            app:nullable="true" />
-        <argument android:name="avatarUrl"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="login"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="type"
-            app:argType="string"
-            app:nullable="true" />
-        <action
-            android:id="@+id/to_homeFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="@id/homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

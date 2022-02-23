@@ -23,6 +23,10 @@
         <variable
             name="viewModel"
             type="com.example.cupcake.model.OrderViewModel" />
+
+        <variable
+            name="summaryFragment"
+            type="com.example.cupcake.SummaryFragment" />
     </data>
 
     <ScrollView
@@ -134,7 +138,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
+                android:onClick="@{() -> summaryFragment.sendOrder()}"
                 android:text="@string/send" />
+
+            <Button
+                android:id="@+id/cancel_button"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_between_elements"
+                android:onClick="@{() -> summaryFragment.cancelOrder()}"
+                android:text="@string/cancel" />
 
         </LinearLayout>
     </ScrollView>
