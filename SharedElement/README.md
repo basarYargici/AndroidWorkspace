@@ -15,6 +15,4 @@ in this project.
  // navigation component  
  def nav_version = "2.4.1" implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" implementation "androidx.navigation:navigation-ui-ktx:$nav_version"  
 ```
-
-![App Gif](https://github.com/basarYargici/AndroidWorkspace/blob/main/SharedElement/assets/SharedElement.gif)
-
+<img src="https://github.com/basarYargici/AndroidWorkspace/blob/main/SharedElement/assets/SharedElement.gif width="40" height="40" />
