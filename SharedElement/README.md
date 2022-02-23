@@ -13,6 +13,12 @@ in this project.
     viewBinding true
  }      
  // navigation component  
- def nav_version = "2.4.1" implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" implementation "androidx.navigation:navigation-ui-ktx:$nav_version"  
+ def nav_version = "2.4.1" 
+ implementation "androidx.navigation:navigation-fragment-ktx:$nav_version" 
+ implementation "androidx.navigation:navigation-ui-ktx:$nav_version"  
 ```
-<img src="https://github.com/basarYargici/AndroidWorkspace/blob/main/SharedElement/assets/SharedElement.gif width="40" height="40" />
+
+<p align="center">
+ <img src="https://github.com/basarYargici/AndroidWorkspace/blob/main/SharedElement/assets/SharedElement.gif" width="450" height="975">
+</p>
+
