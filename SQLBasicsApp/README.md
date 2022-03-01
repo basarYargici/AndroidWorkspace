@@ -16,3 +16,9 @@ When the app is running, you'll be able to send SQL commands to the database via
 2. Download the sample.
 3. Import the sample into Android Studio.
 4. Build and run the sample.
+   
+<p align="center">
+ <img src="https://github.com/basarYargici/AndroidWorkspace/blob/main/SQLBasicsApp/assets/img.png" 
+width="450" height="975">
+</p>
+
