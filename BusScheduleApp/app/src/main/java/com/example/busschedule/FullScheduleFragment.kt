@@ -21,14 +21,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.busschedule.databinding.FullScheduleFragmentBinding
 import com.example.busschedule.viewmodels.BusScheduleViewModel
-import com.example.busschedule.viewmodels.BusScheduleViewModelFactory
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FullScheduleFragment: Fragment() {
@@ -40,9 +40,8 @@ class FullScheduleFragment: Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     private val viewModel: BusScheduleViewModel by activityViewModels {
-        BusScheduleViewModelFactory(
-            (activity?.application as BusScheduleApplication).database.scheduleDao()
-        )
+        (activity?.application as BusScheduleApplication).database.scheduleDao()
+        by viewmodels ()
     }
 
     override fun onCreateView(
@@ -60,9 +59,10 @@ class FullScheduleFragment: Fragment() {
         recyclerView = binding.recyclerView
         val busStopAdapter = initRV(view)
 
-        // Using GlobalScope is not best practice
-        GlobalScope.launch(Dispatchers.IO) {
-            busStopAdapter.submitList(viewModel.fullSchedule())
+        lifecycle.coroutineScope.launch(Dispatchers.IO) {
+            viewModel.fullSchedule().collect {
+                busStopAdapter.submitList(it)
+            }
         }
     }
 

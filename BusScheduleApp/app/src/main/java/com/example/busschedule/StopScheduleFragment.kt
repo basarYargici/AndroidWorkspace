@@ -22,13 +22,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.busschedule.databinding.StopScheduleFragmentBinding
 import com.example.busschedule.viewmodels.BusScheduleViewModel
-import com.example.busschedule.viewmodels.BusScheduleViewModelFactory
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class StopScheduleFragment: Fragment() {
@@ -44,9 +44,8 @@ class StopScheduleFragment: Fragment() {
     private lateinit var recyclerView: RecyclerView
 
     private val viewModel: BusScheduleViewModel by activityViewModels {
-        BusScheduleViewModelFactory(
-            (activity?.application as BusScheduleApplication).database.scheduleDao()
-        )
+        (activity?.application as BusScheduleApplication).database.scheduleDao()
+        by viewmodels ()
     }
 
     private lateinit var stopName: String
@@ -74,8 +73,11 @@ class StopScheduleFragment: Fragment() {
         recyclerView = binding.recyclerView
         val busStopAdapter = initRV()
 
-        GlobalScope.launch(Dispatchers.IO) {
-            busStopAdapter.submitList(viewModel.scheduleForStopName(stopName))
+        lifecycle.coroutineScope.launch(Dispatchers.IO) {
+            viewModel.scheduleForStopName(stopName)
+                .collect {
+                busStopAdapter.submitList(it)
+            }
         }
     }
 
