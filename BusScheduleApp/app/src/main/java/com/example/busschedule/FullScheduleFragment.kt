@@ -20,9 +20,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.busschedule.databinding.FullScheduleFragmentBinding
+import com.example.busschedule.viewmodels.BusScheduleViewModel
+import com.example.busschedule.viewmodels.BusScheduleViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class FullScheduleFragment: Fragment() {
 
@@ -31,6 +38,12 @@ class FullScheduleFragment: Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
+
+    private val viewModel: BusScheduleViewModel by activityViewModels {
+        BusScheduleViewModelFactory(
+            (activity?.application as BusScheduleApplication).database.scheduleDao()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,7 +58,24 @@ class FullScheduleFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.recyclerView
+        val busStopAdapter = initRV(view)
+
+        // Using GlobalScope is not best practice
+        GlobalScope.launch(Dispatchers.IO) {
+            busStopAdapter.submitList(viewModel.fullSchedule())
+        }
+    }
+
+    private fun initRV(view: View): BusStopAdapter {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val busStopAdapter = BusStopAdapter {
+            val action = FullScheduleFragmentDirections.toStopScheduleFragment(
+                stopName = it.stopName
+            )
+            view.findNavController().navigate(action)
+        }
+        recyclerView.adapter = busStopAdapter
+        return busStopAdapter
     }
 
     override fun onDestroyView() {

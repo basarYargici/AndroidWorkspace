@@ -4,6 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.busschedule.database.database.ScheduleDao
 
+@Deprecated(
+    "Aim of using this approach is understanding how was it before. " +
+            "You should use by viewmodels() instead of creating different VMFactories.",
+    ReplaceWith("by viewmodels()"),
+    level = DeprecationLevel.WARNING
+)
 class BusScheduleViewModelFactory(
     private val scheduleDao: ScheduleDao
 ) : ViewModelProvider.Factory {
