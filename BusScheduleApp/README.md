@@ -19,5 +19,5 @@ The bus stops are stored in a Room database. Schedule items are represented by t
 4. Build and run the sample.
 
 <p align="center">
- <img src="/assets/output.mp4" width="450" height="975">
+ <img src="/BusScheduleApp/assets/output.mp4" width="450" height="975">
 </p>
