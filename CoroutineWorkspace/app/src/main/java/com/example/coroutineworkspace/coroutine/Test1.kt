@@ -15,8 +15,7 @@ fun main() = runBlocking { // this: CoroutineScope
     }
 
     println("Hello") // main com.example.coroutineworkspace.coroutine continues while a previous one is delayed
-    println("Hello1") // main com.example.coroutineworkspace.coroutine continues while a previous one is
-    // delayed
+    println("Hello1") // main com.example.coroutineworkspace.coroutine continues while a previous one is delayed
 
     runBlocking {
         println("Hello") // main com.example.coroutineworkspace.coroutine continues while a previous one is delayed
@@ -25,4 +24,6 @@ fun main() = runBlocking { // this: CoroutineScope
         delay(8000L) // non-blocking delay for 1 second (default time unit is ms)
         println("World!") // print after delay
     }
+    println("After runBlocking") // main com.example.coroutineworkspace.coroutine continues while a previous one is delayed
+    println("Hello1") // main com.example.coroutineworkspace.coroutine continues while a previous one is delayed
 }
