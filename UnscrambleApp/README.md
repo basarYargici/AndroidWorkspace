@@ -26,6 +26,17 @@ Getting Started
 
 1. Download and run the app.
 
+<p align="center">
+ <img src="https://github.com/basarYargici/AndroidWorkspace/blob/main/UnscrambleApp/app/src/main/res/app1.gif" width="450" height="975">
+</p>
+<p align="center">
+ <img src="https://github.com/basarYargici/AndroidWorkspace/blob/main/UnscrambleApp/app/src/main/res/app2.gif" width="450" height="975">
+</p>
+<p align="center">
+ <img src="https://github.com/basarYargici/AndroidWorkspace/blob/main/UnscrambleApp/app/src/main/res/app3.gif" width="450" height="975">
+</p>
+
+
 License
 -------
 
@@ -45,4 +56,9 @@ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
 License for the specific language governing permissions and limitations under
 the License.
+
+
+
+
+
 
