@@ -21,15 +21,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventory.R
 import com.example.inventory.databinding.ItemListFragmentBinding
+import com.example.inventory.ui.home.adapter.ItemListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Main fragment displaying details for all items in the database.
  */
+@AndroidEntryPoint
 class ItemListFragment : Fragment() {
+
+    private val viewModel: ItemListViewModel by viewModels()
 
     private var _binding: ItemListFragmentBinding? = null
     private val binding get() = _binding!!
@@ -40,12 +46,16 @@ class ItemListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = ItemListFragmentBinding.inflate(inflater, container, false)
+        viewModel.getAllItems()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerView.apply {
+            adapter = ItemListAdapter(items = viewModel.items) {}
+            layoutManager = LinearLayoutManager(this.context)
+        }
         binding.floatingActionButton.setOnClickListener {
             val action = ItemListFragmentDirections.actionItemListFragmentToAddItemFragment(
                 getString(R.string.add_fragment_title)

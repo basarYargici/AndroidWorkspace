@@ -3,19 +3,22 @@ package com.example.inventory.domain.repository
 import com.example.inventory.data.Item
 import com.example.inventory.data.ItemDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import javax.inject.Inject
 
-class ItemRepository(private val itemDao: ItemDao) {
+class ItemRepository @Inject constructor(private val itemDao: ItemDao) {
 
-    suspend fun addItem(item: Item): Flow<Boolean> {
-        return itemDao.addItem(item)
+    fun addItem(item: Item): Flow<Boolean> {
+        itemDao.addItem(item)
+        return flowOf(true)
     }
 
-    suspend fun updateItem(id: Int, item: Item): Flow<Boolean> {
-        return itemDao.updateItem(id, item)
+    fun updateItem(item: Item) {
+        return itemDao.updateItem(item)
     }
 
-    suspend fun deleteItem(id: Int): Flow<Boolean> {
-        return itemDao.deleteItem(id)
+    fun deleteItem(item: Item) {
+        return itemDao.deleteItem(item)
     }
 
     suspend fun getAllItems(): Flow<List<Item>> {

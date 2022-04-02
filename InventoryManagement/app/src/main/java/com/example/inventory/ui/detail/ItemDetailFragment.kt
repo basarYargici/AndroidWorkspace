@@ -10,10 +10,12 @@ import androidx.navigation.fragment.navArgs
 import com.example.inventory.R
 import com.example.inventory.databinding.FragmentItemDetailBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * [ItemDetailFragment] displays the details of the selected item.
  */
+@AndroidEntryPoint
 class ItemDetailFragment : Fragment() {
     private val navigationArgs: ItemDetailFragmentArgs by navArgs()
 

@@ -22,13 +22,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.example.inventory.data.Item
 import com.example.inventory.databinding.FragmentAddItemBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment to add or update an item in the Inventory database.
  */
+@AndroidEntryPoint
 class AddItemFragment : Fragment() {
+    private val viewModel: AddItemViewModel by viewModels()
 
     private val navigationArgs: AddItemFragmentArgs by navArgs()
 
@@ -45,6 +50,14 @@ class AddItemFragment : Fragment() {
     ): View? {
         _binding = FragmentAddItemBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.saveAction.setOnClickListener {
+            viewModel.addItem(Item(1, "basar", 22.0, 213))
+
+        }
+        super.onViewCreated(view, savedInstanceState)
     }
 
     /**

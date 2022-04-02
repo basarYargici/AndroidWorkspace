@@ -16,8 +16,8 @@
 package com.example.inventory
 
 import android.app.Application
-import com.example.inventory.data.ItemDatabase
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class InventoryApplication : Application() {
-    val database: ItemDatabase by lazy { ItemDatabase.getDatabase(this) }
 }
