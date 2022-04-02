@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.inventory
+package com.example.inventory.ui.add
 
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
@@ -30,7 +30,7 @@ import com.example.inventory.databinding.FragmentAddItemBinding
  */
 class AddItemFragment : Fragment() {
 
-    private val navigationArgs: ItemDetailFragmentArgs by navArgs()
+    private val navigationArgs: AddItemFragmentArgs by navArgs()
 
     // Binding object instance corresponding to the fragment_add_item.xml layout
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
