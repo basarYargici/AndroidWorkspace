@@ -54,8 +54,15 @@ class AddItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.saveAction.setOnClickListener {
-            viewModel.addItem(Item(1, "basar", 22.0, 213))
-
+            with(binding) {
+                viewModel.addItem(
+                    Item(
+                        name = itemName.text.toString(),
+                        price = itemPrice.text.toString().toDouble(),
+                        quantityInStock = itemCount.text.toString().toInt()
+                    )
+                )
+            }
         }
         super.onViewCreated(view, savedInstanceState)
     }

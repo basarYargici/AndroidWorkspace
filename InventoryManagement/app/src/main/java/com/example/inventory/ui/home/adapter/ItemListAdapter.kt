@@ -8,9 +8,10 @@ import com.example.inventory.data.Item
 import com.example.inventory.databinding.ItemListItemBinding
 import java.text.NumberFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ItemListAdapter(
-    val items: ArrayList<Item>,
+    val items: ArrayList<Item> = arrayListOf(),
     private val onClickedCallBack: () -> Unit
 ) : RecyclerView.Adapter<ItemListAdapter.ItemViewHolder>() {
 

@@ -17,17 +17,22 @@
 package com.example.inventory.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.inventory.R
+import com.example.inventory.data.Item
 import com.example.inventory.databinding.ItemListFragmentBinding
 import com.example.inventory.ui.home.adapter.ItemListAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 /**
  * Main fragment displaying details for all items in the database.
@@ -46,14 +51,23 @@ class ItemListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = ItemListFragmentBinding.inflate(inflater, container, false)
-        viewModel.getAllItems()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.recyclerView.apply {
-            adapter = ItemListAdapter(items = viewModel.items) {}
+            Log.d("ALL", "recyclerView")
+
+            // TODO: move collect to vm
+            lifecycle.coroutineScope.launch {
+                viewModel.getAllItems().collect { items ->
+                    Log.d("ALL", "getAllItems: $items")
+                    adapter = ItemListAdapter(items = items as ArrayList<Item>) {}
+                }
+            }
+
             layoutManager = LinearLayoutManager(this.context)
         }
         binding.floatingActionButton.setOnClickListener {
