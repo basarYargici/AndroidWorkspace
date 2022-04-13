@@ -1,4 +1,4 @@
-package com.example.coroutineworkspace.coroutine
+package com.example.coroutineworkspace.workspace
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
