@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 import kotlin.system.measureTimeMillis
 
@@ -24,6 +25,19 @@ class MainActivity : AppCompatActivity() {
 //        multipleRequestBadApproach()
 //        multipleRequestGoodApproach()
 //        multipleRequestMakeAsyncLikeLaunch()
+
+        withLifecycleScope()
+
+    }
+
+    // lives till the lifecycle owner terminated
+    private fun withLifecycleScope() {
+        lifecycleScope.launch {
+            repeat(5) {
+                delay(1000)
+                Log.d(TAG, "onCreate: Running")
+            }
+        }
     }
 
 
