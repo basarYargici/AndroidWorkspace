@@ -1,5 +1,6 @@
-package com.basar.flowworkspace.simpleFlow_02
+package com.basar.flowworkspace.simpleflow_02
 
+import com.basar.flowworkspace.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -8,7 +9,7 @@ import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
 
-    exampleOf("Sequence (blocks main thread)")
+    exampleOf("Sequence (blocks com.basar.flowworkspace.operatorsflow_05.main thread)")
 
     fun prequels(): Sequence<String> = sequence {
         for (movie in listOf(episodeI, episodeII, episodeIII)) {

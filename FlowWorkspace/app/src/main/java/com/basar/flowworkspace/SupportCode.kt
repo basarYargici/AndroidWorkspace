@@ -1,4 +1,4 @@
-package com.basar.flowworkspace.simpleFlow_02
+package com.basar.flowworkspace
 
 fun exampleOf(description: String, action: () -> Unit = {}) {
     println("\n--- Example of: $description ---")
