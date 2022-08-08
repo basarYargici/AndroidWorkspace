@@ -9,6 +9,8 @@ import com.example.android.architecture.blueprints.todoapp.getOrAwaitValue
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.core.Is.`is`
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -45,14 +47,26 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class TasksViewModelTest {
+    /**
+     * InstantTaskExecutorRule is a JUnit Rule. When you use it with the @get:Rule annotation, it causes
+     * some code in the InstantTaskExecutorRule class to be run before and after the tests This rule runs
+     * all Architecture Components-related background jobs in the same thread so that the test results
+     * happen synchronously, and in a repeatable order. When you write tests that include testing
+     * LiveData, use this rule!
+     */
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
+    // Subject under test
+    private lateinit var tasksViewModel: TasksViewModel
+
+    @Before
+    fun setupViewModel() {
+        tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
+    }
+
     @Test
     fun addNewTask_setsNewTaskEvent() {
-        // Given a fresh ViewModel
-        val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
-
         // Create observer - no need for it to do anything!
         val observer = Observer<Event<Unit>> {}
 
@@ -74,15 +88,23 @@ class TasksViewModelTest {
 
     @Test
     fun addNewTask_setsNewTaskEventWithUtilClass() {
-        // Given a fresh ViewModel
-        val tasksViewModel = TasksViewModel(ApplicationProvider.getApplicationContext())
-
         // When adding a new task
         tasksViewModel.addNewTask()
 
         // Then the new task event is triggered
         val value = tasksViewModel.newTaskEvent.getOrAwaitValue()
         assertThat(value.getContentIfNotHandled(), not(nullValue()))
+    }
 
+    @Test
+    fun setFilteringAllTasks_tasksAddViewVisible() {
+        // given
+        val filter = TasksFilterType.ALL_TASKS
+
+        // when
+        tasksViewModel.setFiltering(filter)
+
+        // then
+        assertThat(tasksViewModel.tasksAddViewVisible.getOrAwaitValue(), `is`(true))
     }
 }
