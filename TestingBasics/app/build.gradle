@@ -64,4 +64,10 @@ dependencies {
     // Hamcrest
     testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
 
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
 }
